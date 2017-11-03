@@ -115,13 +115,13 @@ class PreciseHotword(HotWordEngine):
                          'MycroftAI/precise-data/')
         self.exe_name = 'precise-stream'
 
-        exe_file = self.find_download_exe()
-
         model_name = Configuration.get()['listener']['wake_word'] + '.pb'
         model_folder = expanduser('~/.mycroft/precise')
         if not isdir(model_folder):
             mkdir(model_folder)
         model_path = join(model_folder, model_name)
+
+        exe_file = self.find_download_exe()
         self.update_model(model_name, model_path)
 
         args = [exe_file, model_path, '1024']
